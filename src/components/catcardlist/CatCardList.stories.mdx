@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs';
+
+import { CatCardList } from './CatCardList';
+
+<Meta title="Components/CatCardList" component={CatCardList} />
+
+# CatCardList
+
+<Canvas>
+  <Story name="Default">
+    <CatCardList
+      cats={[
+        {
+          imageUrl: "test",
+          favourite: null,
+          voted: null,
+          upvotes: 0,
+          downvotes: 0
+        },
+        {
+          imageUrl: "test",
+          favourite: null,
+          voted: true,
+          upvotes: 1,
+          downvotes: 0
+        },
+        {
+          imageUrl: "test",
+          favourite: null,
+          voted: false,
+          upvotes: 1,
+          downvotes: 0
+        },
+        {
+          imageUrl: "test",
+          favourite: true,
+          voted: null,
+          upvotes: 256,
+          downvotes: 3
+        }
+      ]}
+    />
+  </Story>
+</Canvas>
+

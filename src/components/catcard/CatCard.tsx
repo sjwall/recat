@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithClass } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,16 +15,18 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import styles from './CatCard.module.css';
 
 export type CatCardProps = {
+  id: number;
   imageUrl: string;
   favourite: boolean;
   voted: boolean | null;
   upvotes: number;
   downvotes: number;
+  className?: string | undefined;
 }
 
 export function CatCard(props: CatCardProps) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className={props.className}>
       <Box className={styles.content}>
         <CardMedia
           component="img"
