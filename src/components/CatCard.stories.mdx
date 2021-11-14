@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs';
+
+import { CatCard } from './CatCard';
+
+<Meta title="Components/CatCard" component={CatCard} />
+
+export const CatCardStory = ({ data, ...args }) => (
+  <CatCard {...args} />
+);
+
+# CatCard
+
+<Canvas>
+  <Story name="Default">
+    <CatCard
+      imageUrl="test"
+      favourite={null}
+      voted={null}
+      upvotes={0}
+      downvotes={0}
+    />
+  </Story>
+</Canvas>
+
+## Up voted cat
+
+<Canvas>
+  <Story name="Up voted">
+    <CatCard
+      imageUrl="test"
+      favourite={null}
+      voted={true}
+      upvotes={1}
+      downvotes={0}
+    />
+  </Story>
+</Canvas>
+
+## Down voted cat
+
+<Canvas>
+  <Story name="Down voted">
+    <CatCard
+      imageUrl="test"
+      favourite={null}
+      voted={false}
+      upvotes={1}
+      downvotes={0}
+    />
+  </Story>
+</Canvas>
+
+## Favourite cat
+
+<Canvas>
+  <Story name="Favourite">
+    <CatCard
+      imageUrl="test"
+      favourite={true}
+      voted={null}
+      upvotes={256}
+      downvotes={3}
+    />
+  </Story>
+</Canvas>

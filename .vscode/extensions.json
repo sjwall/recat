@@ -6,6 +6,7 @@
     "ms-azuretools.vscode-docker",
     "davidanson.vscode-markdownlint",
     "streetsidesoftware.code-spell-checker",
-    "orta.vscode-jest"
+    "orta.vscode-jest",
+    "silvenon.mdx"
   ]
 }
