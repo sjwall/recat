@@ -7,6 +7,10 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
+// Init i18n
+import { initI18n } from './i81n';
+initI18n();
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
