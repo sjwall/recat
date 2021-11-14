@@ -1,0 +1,16 @@
+.contents {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  margin: auto;
+  max-width: 340px;
+}
+
+.uploadItem {
+  margin: 8px !important;
+}
+
+.actions {
+  margin: 8px;
+  margin-left: auto;
+}
