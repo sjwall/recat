@@ -15,7 +15,6 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import styles from './CatCard.module.css';
 
 export type CatCardProps = {
-  id: number;
   imageUrl: string;
   favourite: boolean;
   voted: boolean | null;
@@ -25,13 +24,14 @@ export type CatCardProps = {
 }
 
 export function CatCard(props: CatCardProps) {
+  const score = props.upvotes - props.downvotes;
   return (
     <Card sx={{ maxWidth: 345 }} className={props.className}>
       <Box className={styles.content}>
         <CardMedia
           component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="340"
+          image={props.imageUrl}
           alt="A Cat"/>
 
         { props.favourite ?
@@ -49,6 +49,9 @@ export function CatCard(props: CatCardProps) {
           : <Button variant="outlined" className={styles.action}><ThumbDownAltOutlined /></Button>
         }
       </CardActions>
+      <Box>
+        Score: {score}
+      </Box>
     </Card>
   );
 }

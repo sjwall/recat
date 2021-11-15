@@ -16,6 +16,8 @@ export function initI18n() {
             "cancel": "Cancel",
             "upload_button": "Upload",
             "upload_heading": "Select a Cat image to upload.",
+            "upload_hint": "There are no Cat images to view!",
+            "upload_hint_link": "Upload a Cat image!",
             "username": "Username",
             "password": "Password",
           }

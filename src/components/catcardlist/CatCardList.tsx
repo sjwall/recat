@@ -1,17 +1,29 @@
 import React from 'react';
-import { CatCard, CatCardProps } from '../catcard/CatCard'
+import { Cat } from '../../features/thecatapi/cat.model';
+import { CatCard } from '../catcard/CatCard'
 
 
 import styles from './CatCardList.module.css';
 
 export type CatCardListProps = {
-  cats: CatCardProps[]
+  cats: Cat[] | undefined
 }
 
 export function CatCardList(props: CatCardListProps) {
   return (
     <div className={styles.content}>
-      { props.cats.map(p => <CatCard className={styles.item} key={p.id} {...p} />) }
+      {
+        typeof props.cats !== 'undefined' ? props.cats.map(p => <CatCard
+            className={styles.item}
+            key={p.id}
+            imageUrl={p.url}
+            favourite={true}
+            voted={true}
+            upvotes={12}
+            downvotes={6}
+          />)
+          : <></>
+      }
     </div>
   );
 }
