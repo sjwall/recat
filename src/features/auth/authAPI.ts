@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { RootState } from '../../app/store'
 import { User } from './user.model'
 
 export interface UserResponse {
@@ -12,7 +11,7 @@ export interface LoginRequest {
   password: string
 }
 
-export const api = createApi({
+export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
   }),
@@ -27,4 +26,4 @@ export const api = createApi({
   }),
 })
 
-export const { useLoginMutation } = api
+export const { useLoginMutation } = authApi

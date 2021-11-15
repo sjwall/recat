@@ -9,6 +9,8 @@ import IconButton from '@mui/material/IconButton';
 import FileUpload from '@mui/icons-material/FileUpload';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import { User } from '../../features/auth/user.model';
+import { useAppDispatch } from '../../app/hooks';
+import { logout } from '../../features/auth/authSlice';
 
 export type AppPageProps = {
   children: ReactNode
@@ -18,6 +20,10 @@ export type AppPageProps = {
 
 export function AppPage({ children, title, user }: AppPageProps) {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(logout())
+  };
 
   return <>
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -40,18 +46,16 @@ export function AppPage({ children, title, user }: AppPageProps) {
             &nbsp;-&nbsp;
             { user.name }
           </Typography>
-          <Link to="/logout">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label={ t('aria_nav_upload') }
-              sx={{ mr: 2 }}
-
-            >
-              <ExitToApp />
-            </IconButton>
-          </Link>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label={ t('aria_nav_upload') }
+            sx={{ mr: 2 }}
+            onClick={handleLogout}
+          >
+            <ExitToApp />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
