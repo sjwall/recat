@@ -16,7 +16,8 @@ export function initI18n() {
             "cancel": "Cancel",
             "upload_button": "Upload",
             "upload_heading": "Select a Cat image to upload.",
-            "upload_input_subid": "Sub ID"
+            "username": "Username",
+            "password": "Password",
           }
         }
       },

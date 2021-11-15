@@ -1,0 +1,18 @@
+.container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.contents {
+  margin: auto;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  margin: 8px;
+}
+
+.item {
+  margin: 8px !important;
+}
