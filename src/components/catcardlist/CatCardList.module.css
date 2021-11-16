@@ -6,6 +6,5 @@
 }
 
 .item {
-  margin: 8px auto;
-  flex-shrink: 0;
+  min-width: 340px;
 }
