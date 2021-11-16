@@ -15,6 +15,7 @@ export function initI18n() {
             "aria_nav_upload": "Navigate to upload image page",
             "cancel": "Cancel",
             "not_found": "The requested resource was not found.",
+            "score": "Score: {{score}}",
             "upload": "Upload",
             "upload_button": "Upload",
             "upload_heading": "Select a Cat image to upload.",

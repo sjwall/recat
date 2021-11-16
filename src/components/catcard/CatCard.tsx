@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Translation } from 'react-i18next';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,7 +11,6 @@ import ThumbDownAlt from '@mui/icons-material/ThumbDownAlt';
 import ThumbDownAltOutlined from '@mui/icons-material/ThumbDownAltOutlined';
 import Favorite from '@mui/icons-material/Favorite';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-
 
 import styles from './CatCard.module.css';
 
@@ -123,7 +123,9 @@ export function CatCard(props: CatCardProps) {
         }
       </CardActions>
       <Box>
-        Score: {score}
+        <Translation>
+          {(t) => t('score', { score })}
+        </Translation>
       </Box>
     </Card>
   );

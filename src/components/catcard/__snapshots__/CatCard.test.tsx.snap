@@ -114,8 +114,7 @@ exports[`CatCard renders default 1`] = `
   <div
     className="MuiBox-root css-0"
   >
-    Score: 
-    0
+    Score: 0
   </div>
 </div>
 `;
@@ -243,8 +242,7 @@ exports[`CatCard renders downvote 1`] = `
   <div
     className="MuiBox-root css-0"
   >
-    Score: 
-    -1
+    Score: -1
   </div>
 </div>
 `;
@@ -372,8 +370,7 @@ exports[`CatCard renders favourite 1`] = `
   <div
     className="MuiBox-root css-0"
   >
-    Score: 
-    0
+    Score: 0
   </div>
 </div>
 `;
@@ -492,8 +489,7 @@ exports[`CatCard renders upvote 1`] = `
   <div
     className="MuiBox-root css-0"
   >
-    Score: 
-    1
+    Score: 1
   </div>
 </div>
 `;
