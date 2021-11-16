@@ -12,8 +12,8 @@ export type CatPageResponse = {
 }
 
 // Define a service using a base URL and expected endpoints
-export const imageApi = createApi({
-  reducerPath: 'imageApi',
+export const catApi = createApi({
+  reducerPath: 'catApi',
   tagTypes: ['Cat'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.thecatapi.com/v1/',
@@ -28,7 +28,7 @@ export const imageApi = createApi({
   }),
   endpoints: (builder) => ({
     getCatsByPage: builder.query<Cat[], number>({
-      query: (page) => `images?format=JSON&include_favourite=1&include_vote=1&limit=10&page=${page}`,
+      query: (page) => `images?format=JSON&include_favourite=1&include_vote=1&limit=10&page=${page-1}`,
       providesTags: (result) =>
         result
           ? [
@@ -37,6 +37,14 @@ export const imageApi = createApi({
             ]
           : [{ type: 'Cat', id: 'PARTIAL-LIST' }],
     }),
+    addCat: builder.mutation<Cat, FormData>({
+      query: (body) => ({
+        url: `images/upload`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Cat', id: 'PARTIAL-LIST' }],
+    }),
   }),
 })
 
@@ -44,4 +52,5 @@ export const imageApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useGetCatsByPageQuery,
-} = imageApi
+  useAddCatMutation,
+} = catApi

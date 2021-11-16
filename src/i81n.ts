@@ -14,6 +14,7 @@ export function initI18n() {
             "app_name": "Recat",
             "aria_nav_upload": "Navigate to upload image page",
             "cancel": "Cancel",
+            "upload": "Upload",
             "upload_button": "Upload",
             "upload_heading": "Select a Cat image to upload.",
             "upload_hint": "There are no Cat images to view!",

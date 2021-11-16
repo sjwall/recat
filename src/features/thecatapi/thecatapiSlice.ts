@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { imageApi } from './thecatapiAPI';
+import { catApi } from './thecatapiAPI';
 
 export interface AuthState {
   totalPages: number
@@ -18,7 +18,7 @@ export const imagesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-      imageApi.endpoints.getCatsByPage.matchFulfilled,
+      catApi.endpoints.getCatsByPage.matchFulfilled,
       (state, reducer) => {
         state.totalPages = (reducer.meta.baseQueryMeta as any).response.headers.get('pagination-count')
       }

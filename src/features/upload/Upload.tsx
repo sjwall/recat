@@ -1,15 +1,19 @@
-import React, { ChangeEvent } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 import styles from './Upload.module.css';
+import { AppPage } from '../../components/apppage/AppPage';
+import { useAppSelector, useAuth } from '../../app/hooks';
+import { User } from '../auth/user.model';
+import { useAddCatMutation } from '../thecatapi/thecatapiAPI';
 
 /**
  * Page that displays input fields for uploading a Cat image.
@@ -18,56 +22,52 @@ import styles from './Upload.module.css';
  */
 export function Upload() {
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   // Component state
-  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
-  const [subId, setSubId] = React.useState('');
+  const user = useAppSelector(useAuth).user as User;
+  const [uploadCat, { error, isLoading, isSuccess }] = useAddCatMutation()
 
-  // Component state changers
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files !== null) {
-      setSelectedFile(event.target.files[0]);
-    } else {
-      setSelectedFile(null);
+  const handleUploadClick = () => {
+    if (inputRef.current !== null && inputRef.current.files !== null) {
+      const formData = new FormData();
+      formData.append('file', inputRef.current.files[0]);
+      uploadCat(formData);
     }
-  };
-
-  const handleSubIDChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSubId(event.target.value);
-  };
+  }
 
   return (
-    <Box sx={{ width: '100%' }}
-      className={styles.contents}
-      component="form"
-      autoComplete="off"
-    >
-      <Typography variant="subtitle1" gutterBottom component="div" className={styles.uploadItem}>
-        {t('upload_heading')}
-      </Typography>
-      <FormControl className={styles.uploadItem}>
-        <OutlinedInput
-          id="component-outlined"
-          value={selectedFile}
-          onChange={handleFileChange}
-          type="file"
-        />
-      </FormControl>
-      <FormControl className={styles.uploadItem}>
-        <InputLabel htmlFor="component-outlined">{t('upload_input_subid')}</InputLabel>
-        <OutlinedInput
-          id="component-outlined"
-          value={subId}
-          onChange={handleSubIDChange}
-          label={t('upload_input_subid')}
-        />
-      </FormControl>
-      <Stack spacing={2} direction="row" className={styles.actions}>
-        <Link to="/">
-          <Button variant="text">{t('cancel')}</Button>
-        </Link>
-        <Button variant="contained">{t('upload_button')}</Button>
-      </Stack>
-    </Box>
+    <AppPage title={ t('upload') } user={user}>
+      { isSuccess ? <Navigate to="/" /> : <></>}
+      <Box sx={{ width: '100%' }}
+        className={styles.contents}
+        component="form"
+        autoComplete="off"
+      >
+        <Typography variant="subtitle1" gutterBottom component="div" className={styles.uploadItem}>
+          {t('upload_heading')}
+        </Typography>
+        <FormControl className={styles.uploadItem}>
+          <OutlinedInput
+            inputRef={inputRef}
+            disabled={isLoading}
+            type="file"
+          />
+        </FormControl>
+        { error ? <Typography>{error}</Typography> : <></> }
+        <Stack spacing={2} direction="row" className={styles.actions}>
+          <Link to="/">
+            <Button variant="text" disabled={isLoading}>{t('cancel')}</Button>
+          </Link>
+          <Button variant="contained" disabled={isLoading} onClick={handleUploadClick}>
+            {
+              isLoading
+              ? <CircularProgress />
+              : t('upload_button')
+            }
+          </Button>
+        </Stack>
+      </Box>
+    </AppPage>
   );
 }
