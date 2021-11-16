@@ -22,6 +22,9 @@ yarn start
 
 In your browser navigate to http://localhost:3000/
 
+Enter any values into the login fields.
+The user is mocked as there's no authentication backend currently.
+
 ## Available Scripts
 
 In the project directory, you can run:

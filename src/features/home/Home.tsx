@@ -22,6 +22,12 @@ import { User } from '../auth/user.model';
 import styles from './Home.module.css';
 import { Typography } from '@mui/material';
 
+/**
+ * Home page that displays cats.
+ * What more could you ask for.
+ *
+ * @returns React component.
+ */
 export function Home() {
   const { t } = useTranslation();
   const [ page, setPage ] = useState(1);

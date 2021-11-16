@@ -10,10 +10,29 @@ import styles from './CatCardList.module.css';
  * Properties for CatCardList.
  */
 export type CatCardListProps = {
+  /**
+   * The cats to display in the list.
+   */
   cats: Cat[] | undefined
+
+  /**
+   * The action to perform when the image is not a favourite and the favourite button is clicked.
+   */
   onFavourite: (image_id: string) => void;
+
+  /**
+   * The action to perform when the image is a favourite and the favourite button is clicked.
+   */
   onUnfavourite: (favourite_id: string, image_id: string) => void;
+
+  /**
+   * The action to perform when the image is voted for, either positively or negatively.
+   */
   onVote: (value: 1 | 0, image_id: string) => void;
+
+  /**
+   * The active to perform when the positively or negatively voted image has it's vote reset.
+   */
   onUnvote: (vote_id: string, image_id: string) => void;
 
   /**

@@ -59,6 +59,12 @@ export type CatCardProps = {
   onVote: (value: boolean | null) => void;
 }
 
+/**
+ * Displays a cat image with favourite and vote buttons.
+ *
+ * @param props Component properties.
+ * @returns React component.
+ */
 export function CatCard(props: CatCardProps) {
   const score = useMemo(() => {
     return props.upvotes - props.downvotes;

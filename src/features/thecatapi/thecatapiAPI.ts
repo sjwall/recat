@@ -2,17 +2,38 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { RootState } from '../../app/store';
 import { Cat } from "./cat.model";
 
+/**
+ * The request when querying the image api.
+ */
 export type CatPageResponse = {
-
+  /**
+   * The current page.
+   */
   page: number
 
+  /**
+   * The total page count.
+   */
   pageCount: number
 
+  /**
+   * The cats to show for the current page.
+   */
   cats: Cat[]
 }
 
+/**
+ * The response from modification requests.
+ */
 export type CatModificationResponse = {
+  /**
+   * Was the modification successful?
+   */
   message: 'SUCCESS' | 'AUTHENTICATION_ERROR - no valid x-api-key in header' | 'INVALID_ACCOUNT',
+
+  /**
+   * The unique id for the modified object.
+   */
   id: number | string
 }
 

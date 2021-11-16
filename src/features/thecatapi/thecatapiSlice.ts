@@ -2,14 +2,26 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { catApi } from './thecatapiAPI';
 
-export interface AuthState {
+/**
+ * The image slice state.
+ */
+export interface ImageState {
+  /**
+   * The total pages available to view.
+   */
   totalPages: number
 }
 
-const initialState: AuthState = {
+/**
+ * Slice initial state.
+ */
+const initialState: ImageState = {
   totalPages: 0
 };
 
+/**
+ * Slice for extracting the total page count from the image requests.
+ */
 export const imagesSlice = createSlice({
   name: 'images',
   initialState,
@@ -26,6 +38,12 @@ export const imagesSlice = createSlice({
   },
 });
 
+/**
+ * Get the total pages available to display.
+ *
+ * @param state Root state.
+ * @returns The total pages.
+ */
 export const selectTotalPages = (state: RootState) => state.images.totalPages;
 
 export default imagesSlice.reducer;
