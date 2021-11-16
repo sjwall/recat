@@ -29,11 +29,11 @@ export function Login() {
   const handleFormChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement>) =>
-    setFormState((prev) => ({ ...prev, [name]: value }))
+    setFormState((prev) => ({ ...prev, [name]: value.trim() }))
 
   const handleLogin = async () => {
     // TODO add more validation
-    if (formState.username.trim() && formState.password.trim()) {
+    if (formState.username && formState.password && formState.username.length < 256) {
       try {
         await login(formState).unwrap()
       } catch (err) {
