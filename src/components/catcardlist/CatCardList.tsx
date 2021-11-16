@@ -9,6 +9,8 @@ export type CatCardListProps = {
   cats: Cat[] | undefined
   onFavourite: (image_id: string) => void;
   onUnfavourite: (favourite_id: string, image_id: string) => void;
+  onVote: (value: 1 | 0, image_id: string) => void;
+  onUnvote: (vote_id: string, image_id: string) => void;
 }
 
 export function CatCardList(props: CatCardListProps) {
@@ -21,6 +23,14 @@ export function CatCardList(props: CatCardListProps) {
     }
   }
 
+  const handleVote = (value: boolean | null, cat: Cat) => {
+    if (value !== null) {
+      props.onVote(value ? 1 : 0, cat.id);
+    } else if (cat.vote) {
+      props.onUnvote(cat.vote?.id, cat.id)
+    }
+  }
+
   return (
     <div className={styles.content}>
       {
@@ -29,10 +39,11 @@ export function CatCardList(props: CatCardListProps) {
             key={p.id}
             imageUrl={p.url}
             favourite={typeof p.favourite !== 'undefined'}
-            voted={true}
+            voted={typeof p.vote === 'undefined' ? null : Boolean(p.vote.value)}
             upvotes={12}
             downvotes={6}
             onFavourite={(v) => handleFavourite(v, p)}
+            onVote={(v) => handleVote(v, p)}
           />)
           : <></>
       }

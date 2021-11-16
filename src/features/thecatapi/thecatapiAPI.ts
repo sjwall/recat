@@ -11,6 +11,11 @@ export type CatPageResponse = {
   cats: Cat[]
 }
 
+export type CatModificationResponse = {
+  message: 'SUCCESS' | 'AUTHENTICATION_ERROR - no valid x-api-key in header' | 'INVALID_ACCOUNT',
+  id: number | string
+}
+
 // Define a service using a base URL and expected endpoints
 export const catApi = createApi({
   reducerPath: 'catApi',
@@ -29,15 +34,9 @@ export const catApi = createApi({
   endpoints: (builder) => ({
     getCatsByPage: builder.query<Cat[], {page: number, sub_id: string}>({
       query: ({page, sub_id}) => `images/search?format=JSON&include_favourite=1&include_vote=1&limit=10&order=DESC&page=${page-1}&sub_id=${encodeURIComponent(sub_id)}`,
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => { return ({ type: 'Cat' as const, id })}),
-              { type: 'Cat', id: 'PARTIAL-LIST' },
-            ]
-          : [{ type: 'Cat', id: 'PARTIAL-LIST' }],
+      providesTags:['Cat'],
     }),
-    addCat: builder.mutation<Cat, FormData>({
+    addCat: builder.mutation<CatModificationResponse, FormData>({
       query: (body) => ({
         url: `images/upload`,
         method: 'POST',
@@ -45,7 +44,7 @@ export const catApi = createApi({
       }),
       invalidatesTags: ['Cat'],
     }),
-    favourite: builder.mutation<Cat, { image_id: string, sub_id: string }>({
+    favourite: builder.mutation<CatModificationResponse, { image_id: string, sub_id: string }>({
       query: (body) => ({
         url: `favourites`,
         method: 'POST',
@@ -53,9 +52,24 @@ export const catApi = createApi({
       }),
       invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
     }),
-    unfavourite: builder.mutation<Cat, { favourite_id: string, image_id: string }>({
+    unfavourite: builder.mutation<CatModificationResponse, { favourite_id: string, image_id: string }>({
       query: ({ favourite_id }) => ({
         url: `favourites/${favourite_id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
+    }),
+    vote: builder.mutation<CatModificationResponse, { image_id: string, sub_id: string, value: 1 | 0 }>({
+      query: (body) => ({
+        url: `votes`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
+    }),
+    unvote: builder.mutation<CatModificationResponse, { vote_id: string, image_id: string }>({
+      query: ({ vote_id }) => ({
+        url: `votes/${vote_id}`,
         method: 'DELETE',
       }),
       invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
@@ -70,4 +84,6 @@ export const {
   useAddCatMutation,
   useFavouriteMutation,
   useUnfavouriteMutation,
+  useVoteMutation,
+  useUnvoteMutation,
 } = catApi
