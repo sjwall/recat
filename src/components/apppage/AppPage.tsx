@@ -12,14 +12,35 @@ import { User } from '../../features/auth/user.model';
 import { useAppDispatch } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 
+/**
+ * Properties for AppPage.
+ */
 export type AppPageProps = {
+  /**
+   * Children to display below app bar.
+   */
   children: ReactNode
+
+  /**
+   * Title to display in app bar.
+   */
   title: string
+
+  /**
+   * User to display in app bar.
+   */
   user: User
 }
 
-export function AppPage({ children, title, user }: AppPageProps) {
+/**
+ * Template page.
+ *
+ * @param props Properties.
+ * @returns React component.
+ */
+export function AppPage(props: AppPageProps) {
   const { t } = useTranslation();
+  const { children, title, user } = props;
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     dispatch(logout())
