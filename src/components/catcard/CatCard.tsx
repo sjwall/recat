@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -21,10 +21,14 @@ export type CatCardProps = {
   upvotes: number;
   downvotes: number;
   className?: string | undefined;
+  onFavourite: (value: boolean) => void;
+  onVote: (value: boolean | null) => void;
 }
 
 export function CatCard(props: CatCardProps) {
-  const score = props.upvotes - props.downvotes;
+  const score = useMemo(() => {
+    return props.upvotes - props.downvotes;
+  }, [props])
   return (
     <Card sx={{ maxWidth: 345 }} className={props.className}>
       <Box className={styles.content}>
@@ -33,20 +37,54 @@ export function CatCard(props: CatCardProps) {
           height="340"
           image={props.imageUrl}
           alt="A Cat"/>
-
-        { props.favourite ?
-          <Button size="small" className={styles.favourite}><Favorite /></Button>
-          : <Button size="small" className={styles.favourite}><FavoriteBorder /></Button>
-        }
+        <Button
+          size="small"
+          className={styles.favourite}
+          onClick={() => props.onFavourite(!props.favourite)}
+        >
+          {
+            props.favourite
+            ? <Favorite />
+            : <FavoriteBorder />
+          }
+        </Button>
         </Box>
       <CardActions>
-        { props.voted ?
-          <Button variant="contained" className={styles.action}><ThumbUpAlt /></Button>
-          : <Button variant="outlined" className={styles.action}><ThumbUpAltOutlined /></Button>
+        { props.voted
+          ?
+            <Button
+              variant="contained"
+              className={styles.action}
+              onClick={() => props.onVote(null)}
+            >
+              <ThumbUpAlt />
+            </Button>
+          :
+            <Button
+              variant="outlined"
+              className={styles.action}
+              onClick={() => props.onVote(true)}
+            >
+              <ThumbUpAltOutlined />
+            </Button>
         }
-        { props.voted === false ?
-          <Button variant="contained" className={styles.action}><ThumbDownAlt /></Button>
-          : <Button variant="outlined" className={styles.action}><ThumbDownAltOutlined /></Button>
+        { props.voted === false
+          ?
+            <Button
+              variant="contained"
+              className={styles.action}
+              onClick={() => props.onVote(null)}
+            >
+              <ThumbDownAlt />
+            </Button>
+          :
+            <Button
+              variant="outlined"
+              className={styles.action}
+              onClick={() => props.onVote(false)}
+            >
+              <ThumbDownAltOutlined />
+            </Button>
         }
       </CardActions>
       <Box>

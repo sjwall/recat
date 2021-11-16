@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import { AppPage } from '../../components/apppage/AppPage';
 import { CatCardList } from '../../components/catcardlist/CatCardList'
-import { useGetCatsByPageQuery } from '../thecatapi/thecatapiAPI';
+import { useGetCatsByPageQuery, useFavouriteMutation, useUnfavouriteMutation } from '../thecatapi/thecatapiAPI';
 import { selectTotalPages } from '../thecatapi/thecatapiSlice';
 import { useAppSelector, useAuth } from '../../app/hooks';
 import { User } from '../auth/user.model';
@@ -22,13 +22,29 @@ export function Home() {
   const user = useAppSelector(useAuth).user as User;
   const pageCount = useAppSelector(selectTotalPages);
 
-  const { data, isLoading } = useGetCatsByPageQuery(page);
+  const { data, isLoading } = useGetCatsByPageQuery({page, sub_id: user.name});
+  const [favouriteCat, favouriteResponse] = useFavouriteMutation()
+  const [unfavouriteCat, unfavouriteResponse] = useUnfavouriteMutation()
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPage(page);
   };
 
-  const catList = <CatCardList cats={data} />
+  const handleFavourite = (image_id: string) => {
+      favouriteCat({ image_id, sub_id: user.name})
+  }
+
+  const handleUnfavourite = (favourite_id: string, image_id: string) => {
+    unfavouriteCat({favourite_id, image_id})
+  }
+
+  const catList = <CatCardList
+      cats={data}
+      onFavourite={handleFavourite}
+      onUnfavourite={handleUnfavourite}
+      onVote={handleVote}
+      onUnvote={handleUnvote}
+    />
 
   return (
     <AppPage title={ t('app_name') } user={user}>

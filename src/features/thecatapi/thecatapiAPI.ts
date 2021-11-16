@@ -27,12 +27,12 @@ export const catApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getCatsByPage: builder.query<Cat[], number>({
-      query: (page) => `images?format=JSON&include_favourite=1&include_vote=1&limit=10&page=${page-1}`,
+    getCatsByPage: builder.query<Cat[], {page: number, sub_id: string}>({
+      query: ({page, sub_id}) => `images/search?format=JSON&include_favourite=1&include_vote=1&limit=10&order=DESC&page=${page-1}&sub_id=${encodeURIComponent(sub_id)}`,
       providesTags: (result) =>
         result
           ? [
-              ...result.map(({ id }) => ({ type: 'Cat' as const, id })),
+              ...result.map(({ id }) => { return ({ type: 'Cat' as const, id })}),
               { type: 'Cat', id: 'PARTIAL-LIST' },
             ]
           : [{ type: 'Cat', id: 'PARTIAL-LIST' }],
@@ -43,7 +43,22 @@ export const catApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidatesTags: [{ type: 'Cat', id: 'PARTIAL-LIST' }],
+      invalidatesTags: ['Cat'],
+    }),
+    favourite: builder.mutation<Cat, { image_id: string, sub_id: string }>({
+      query: (body) => ({
+        url: `favourites`,
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
+    }),
+    unfavourite: builder.mutation<Cat, { favourite_id: string, image_id: string }>({
+      query: ({ favourite_id }) => ({
+        url: `favourites/${favourite_id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (_result, _error, arg) => [{ type: 'Cat', id: arg.image_id }],
     }),
   }),
 })
@@ -53,4 +68,6 @@ export const catApi = createApi({
 export const {
   useGetCatsByPageQuery,
   useAddCatMutation,
+  useFavouriteMutation,
+  useUnfavouriteMutation,
 } = catApi

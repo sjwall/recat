@@ -3,4 +3,5 @@ export interface Cat {
   url: string
   sub_id: string
   created_at: string
+  favourite?: { id: string }
 }
