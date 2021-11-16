@@ -82,6 +82,7 @@ export function CatCard(props: CatCardProps) {
           size="small"
           className={styles.favourite}
           onClick={() => props.onFavourite(!props.favourite)}
+          data-testid="favourite"
         >
           {
             props.favourite
@@ -97,6 +98,7 @@ export function CatCard(props: CatCardProps) {
               variant="contained"
               className={styles.action}
               onClick={() => props.onVote(null)}
+              data-testid="voteup"
             >
               <ThumbUpAlt />
             </Button>
@@ -105,6 +107,7 @@ export function CatCard(props: CatCardProps) {
               variant="outlined"
               className={styles.action}
               onClick={() => props.onVote(true)}
+              data-testid="voteup"
             >
               <ThumbUpAltOutlined />
             </Button>
@@ -115,6 +118,7 @@ export function CatCard(props: CatCardProps) {
               variant="contained"
               className={styles.action}
               onClick={() => props.onVote(null)}
+              data-testid="votedown"
             >
               <ThumbDownAlt />
             </Button>
@@ -123,6 +127,7 @@ export function CatCard(props: CatCardProps) {
               variant="outlined"
               className={styles.action}
               onClick={() => props.onVote(false)}
+              data-testid="votedown"
             >
               <ThumbDownAltOutlined />
             </Button>

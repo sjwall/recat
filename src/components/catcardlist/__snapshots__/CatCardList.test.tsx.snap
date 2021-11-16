@@ -21,6 +21,7 @@ exports[`CatCardList renders default 1`] = `
         />
         <button
           className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root favourite css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+          data-testid="favourite"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -56,6 +57,7 @@ exports[`CatCardList renders default 1`] = `
       >
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="voteup"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -87,6 +89,7 @@ exports[`CatCardList renders default 1`] = `
         </button>
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="votedown"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -137,6 +140,7 @@ exports[`CatCardList renders default 1`] = `
         />
         <button
           className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root favourite css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+          data-testid="favourite"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -172,6 +176,7 @@ exports[`CatCardList renders default 1`] = `
       >
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="voteup"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -203,6 +208,7 @@ exports[`CatCardList renders default 1`] = `
         </button>
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="votedown"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -253,6 +259,7 @@ exports[`CatCardList renders default 1`] = `
         />
         <button
           className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root favourite css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+          data-testid="favourite"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -288,6 +295,7 @@ exports[`CatCardList renders default 1`] = `
       >
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="voteup"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -319,6 +327,7 @@ exports[`CatCardList renders default 1`] = `
         </button>
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="votedown"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -369,6 +378,7 @@ exports[`CatCardList renders default 1`] = `
         />
         <button
           className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButtonBase-root favourite css-1knaqv7-MuiButtonBase-root-MuiButton-root"
+          data-testid="favourite"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -404,6 +414,7 @@ exports[`CatCardList renders default 1`] = `
       >
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="voteup"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
@@ -435,6 +446,7 @@ exports[`CatCardList renders default 1`] = `
         </button>
         <button
           className="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root action css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          data-testid="votedown"
           disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
