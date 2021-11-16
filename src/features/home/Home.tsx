@@ -37,6 +37,10 @@ export function Home() {
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setPage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   const handleFavourite = (image_id: string) => {
