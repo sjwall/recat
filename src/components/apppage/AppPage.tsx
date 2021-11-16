@@ -11,6 +11,7 @@ import ExitToApp from '@mui/icons-material/ExitToApp';
 import { User } from '../../features/auth/user.model';
 import { useAppDispatch } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
+import { catApi } from '../../features/thecatapi/thecatapiAPI';
 
 /**
  * Properties for AppPage.
@@ -42,8 +43,14 @@ export function AppPage(props: AppPageProps) {
   const { t } = useTranslation();
   const { children, title, user } = props;
   const dispatch = useAppDispatch();
+
+  /**
+   * Calls logout and invalidates cache.
+   */
   const handleLogout = () => {
     dispatch(logout())
+    // TODO link this into redux so that it is handled in the api or slice.
+    dispatch(catApi.util.invalidateTags([{ type: 'Cat'}]))
   };
 
   return <>
