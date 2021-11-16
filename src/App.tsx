@@ -6,7 +6,14 @@ import './App.css';
 import { PublicOutlet } from './features/auth/PublicOutlet';
 import { PrivateOutlet } from './features/auth/PrivateOutlet';
 import { Login } from './features/auth/Login';
+import { NotFound } from './components/notfound/NotFound';
 
+/**
+ * Main application entry component.
+ * Handles routing.
+ *
+ * @returns React component.
+ */
 function App() {
   return (
     <div className="App">
@@ -18,6 +25,7 @@ function App() {
         <Route element={<PublicOutlet />}>
           <Route path="login" element={<Login />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

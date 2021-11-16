@@ -1,0 +1,12 @@
+.container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.contents {
+  margin: auto;
+}
+
+.item {
+  margin: 8px !important;
+}
