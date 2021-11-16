@@ -31,10 +31,17 @@ export const catApi = createApi({
       return headers
     },
   }),
+  refetchOnMountOrArgChange: true,
   endpoints: (builder) => ({
     getCatsByPage: builder.query<Cat[], {page: number, sub_id: string}>({
-      query: ({page, sub_id}) => `images/search?format=JSON&include_favourite=1&include_vote=1&limit=10&order=DESC&page=${page-1}&sub_id=${encodeURIComponent(sub_id)}`,
-      providesTags:['Cat'],
+      query: ({page, sub_id}) => `images/search?format=JSON&include_favourite=1&include_vote=1&limit=12&order=DESC&page=${page-1}&sub_id=${encodeURIComponent(sub_id)}`,
+      providesTags: (result) =>
+      result
+        ? [
+            ...result.map(({ id }) => { return ({ type: 'Cat' as const, id })}),
+            { type: 'Cat', id: 'PARTIAL-LIST' },
+          ]
+        : [{ type: 'Cat', id: 'PARTIAL-LIST' }],
     }),
     addCat: builder.mutation<CatModificationResponse, FormData>({
       query: (body) => ({
