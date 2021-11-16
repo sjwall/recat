@@ -32,6 +32,7 @@ export function Upload() {
     if (inputRef.current !== null && inputRef.current.files !== null) {
       const formData = new FormData();
       formData.append('file', inputRef.current.files[0]);
+      formData.append('sub_id', user.name)
       uploadCat(formData);
     }
   }
