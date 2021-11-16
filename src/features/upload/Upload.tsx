@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 import styles from './Upload.module.css';
 import { AppPage } from '../../components/apppage/AppPage';
-import { useAppSelector, useAuth } from '../../app/hooks';
+import { useAuth } from '../../app/hooks';
 import { User } from '../auth/user.model';
 import { useAddCatMutation } from '../thecatapi/thecatapiAPI';
 
@@ -25,7 +25,7 @@ export function Upload() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // Component state
-  const user = useAppSelector(useAuth).user as User;
+  const user = useAuth().user as User;
   const [uploadCat, { error, isLoading, isSuccess }] = useAddCatMutation()
 
   const handleUploadClick = () => {

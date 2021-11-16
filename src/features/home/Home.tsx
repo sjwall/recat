@@ -25,7 +25,7 @@ import { Typography } from '@mui/material';
 export function Home() {
   const { t } = useTranslation();
   const [ page, setPage ] = useState(1);
-  const user = useAppSelector(useAuth).user as User;
+  const user = useAuth().user as User;
   const pageCount = useAppSelector(selectTotalPages);
 
   const { data, isLoading } = useGetCatsByPageQuery({page, sub_id: user.name});
