@@ -1,7 +1,7 @@
 import { rest } from 'msw'
-import { nanoid } from '@reduxjs/toolkit'
 
-const token = nanoid()
+// TODO load from .env file
+const token = 'Put your token here'
 
 export const handlers = [
   rest.post('/login', (req, res, ctx) => {
